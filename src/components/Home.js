@@ -39,35 +39,26 @@ const Home = () => {
     const createRoomWithVideo = async (videoId, videoTitle) => {
         try {
             const token = localStorage.getItem('token');
+            const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+            const username = tokenPayload.sub;
+
             const response = await fetch("https://colkidclub-hutech.id.vn/api/rooms", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
-                }
+                },
+                body: JSON.stringify({
+                    username: username,
+                    name: `Phòng của ${username}`,
+                    thumbnail: "https://i.imgur.com/6SqA0B8.png",
+                    current_Video_Url: `https://www.youtube.com/watch?v=${videoId}`,
+                    current_Video_Title: videoTitle
+                })
             });
 
             if (response.ok) {
                 const newRoom = await response.json();
-
-                // Update video info cho phòng mới
-                const updateVideoResponse = await fetch(`https://colkidclub-hutech.id.vn/api/rooms/${newRoom.id}/update-video`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                        currentVideoUrl: `https://www.youtube.com/watch?v=${videoId}`,
-                        currentVideoTitle: videoTitle
-                    })
-                });
-
-                if (!updateVideoResponse.ok) {
-                    console.error("Failed to update video info");
-                }
-
-                // Chuyển hướng đến phòng mới với thông tin video trong URL params
                 navigate(`/room/${newRoom.id}?videoId=${videoId}&autoplay=true`);
             } else {
                 console.error("Failed to create room");
@@ -80,13 +71,22 @@ const Home = () => {
     const createRoom = async () => {
         try {
             const token = localStorage.getItem('token');
+            const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+            const username = tokenPayload.sub;
+
             const response = await fetch("https://colkidclub-hutech.id.vn/api/rooms", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
-                }
+                },
+                body: JSON.stringify({
+                    username: username,
+                    name: `Phòng của ${username}`,
+                    thumbnail: "https://i.imgur.com/6SqA0B8.png"
+                })
             });
+
             if (response.ok) {
                 const newRoom = await response.json();
                 navigate(`/room/${newRoom.id}`);

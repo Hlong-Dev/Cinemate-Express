@@ -17,7 +17,11 @@ const Header = ({ usersInRoom, onSearchClick, onQueueClick, showCountdown, count
 
     const handleLeaveConfirm = async () => {
         setShowPopup(false);
-        const token = localStorage.getItem('token'); // Lấy mã JWT từ localStorage
+        const token = localStorage.getItem('token');
+
+        // Giải mã JWT để lấy username từ sub
+        const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+        const username = tokenPayload.sub;
 
         try {
             console.log("Sending DELETE request to server...");
@@ -25,19 +29,27 @@ const Header = ({ usersInRoom, onSearchClick, onQueueClick, showCountdown, count
             const response = await fetch(`https://colkidclub-hutech.id.vn/api/rooms/${roomId}`, {
                 method: 'DELETE',
                 headers: {
-                    'Authorization': `Bearer ${token}`, // Đính kèm mã JWT
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
+                credentials: 'include',
+                mode: 'cors',
+                body: JSON.stringify({ username }) // Gửi username trong body
             });
 
             // Kiểm tra xem yêu cầu DELETE có thành công không
             if (!response.ok) {
-                throw new Error(`Server responded with status: ${response.status}`);
+                const errorText = await response.text();
+                console.error('Server error response:', errorText);
+                throw new Error(`Server responded with status: ${response.status}, message: ${errorText}`);
             }
 
             console.log("Room deleted successfully");
-            navigate('/home'); // Điều hướng về trang home sau khi xóa thành công
+            navigate('/home');
         } catch (error) {
             console.error('Error deleting room:', error);
+            alert('Không thể xóa phòng. Vui lòng thử lại.');
         }
     };
 
