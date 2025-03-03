@@ -1414,7 +1414,12 @@ const ChatRoom = () => {
                                     onPlay={handlePlay}
                                     onProgress={handleProgress}
                                     onEnded={handleVideoEnd}
-                                    config={{
+                                        config={{
+                                            file: {
+                                                attributes: {
+                                                    crossOrigin: 'anonymous'
+                                                }
+                                            },
                                         youtube: {
                                             playerVars: {
                                                 controls: isOwner ? 1 : 0,
@@ -1457,26 +1462,29 @@ const ChatRoom = () => {
                                             </div>
                                         </div>
                                     ))}
-
-                                    {videoList.map((video, index) => (
-                                        <div
-                                            className={`video-cardd ${!isOwner ? 'disabled-card' : ''}`}
-                                            key={index}
-                                            onClick={() => playVideo(video)}
-                                            style={{ cursor: isOwner ? 'pointer' : 'not-allowed', opacity: isOwner ? 1 : 0.6 }}
-                                            title={isOwner ? 'Click to play video' : 'Bạn không có quyền chọn video'}
-                                        >
-                                            <img
-                                                src={`https://colkidclub-hutech.id.vn${video.thumbnail}`}
-                                                alt={`Thumbnail of ${video.title}`}
-                                                className="thumbnail"
-                                            />
-                                            <div className="video-info">
-                                                <p className="video-title">{video.title}</p>
-                                                <span className="video-duration">{video.duration}</span>
+                                        {videoList.map((video, index) => (
+                                            <div
+                                                className={`video-cardd ${!isOwner ? 'disabled-card' : ''}`}
+                                                key={index}
+                                                onClick={() => playVideo(video)}
+                                                style={{ cursor: isOwner ? 'pointer' : 'not-allowed', opacity: isOwner ? 1 : 0.6 }}
+                                                title={isOwner ? 'Click to play video' : 'Bạn không có quyền chọn video'}
+                                            >
+                                                <img
+                                                    src={`https://colkidclub-hutech.id.vn/video/thumbnails/${encodeURIComponent(video.title.replace('.mp4', '.jpg'))}`}
+                                                    alt={`Thumbnail of ${video.title}`}
+                                                    crossOrigin="anonymous"  // Thêm thuộc tính này
+                                                    className="thumbnail"
+                                                    onError={(e) => {
+                                                        e.target.src = 'https://via.placeholder.com/150'; // Ảnh placeholder nếu load ảnh bị lỗi
+                                                    }}
+                                                />
+                                                <div className="video-info">
+                                                    <p className="video-title">{video.title}</p>
+                                                    <span className="video-duration">{video.duration}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))}
                                 </div>
                             )}
                         </>
