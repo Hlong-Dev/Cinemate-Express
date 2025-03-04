@@ -71,12 +71,10 @@ const ChatRoom = () => {
             const musicKeywords = [
               
              
-                'nhạc lofi chill',
+                'us uk',
                 'nhạc pop usuk',
                 
-                'vpop hay nhất',
-                'nhạc trẻ hot',
-                'edm remix việt',
+               
                 'nhạc indie việt',
                
             ];

@@ -52,8 +52,8 @@ const Home = () => {
                     username: username,
                     name: `Phòng của ${username}`,
                     thumbnail: "https://i.imgur.com/6SqA0B8.png",
-                    current_Video_Url: `https://www.youtube.com/watch?v=${videoId}`,
-                    current_Video_Title: videoTitle
+                    current_video_url: `https://www.youtube.com/watch?v=${videoId}`,
+                    current_video_title: videoTitle
                 })
             });
 
@@ -83,7 +83,8 @@ const Home = () => {
                 body: JSON.stringify({
                     username: username,
                     name: `Phòng của ${username}`,
-                    thumbnail: "https://i.imgur.com/6SqA0B8.png"
+                    thumbnail: "https://i.imgur.com/6SqA0B8.png",
+
                 })
             });
 
@@ -186,7 +187,7 @@ const Home = () => {
                         <span>&#9776;</span>
                     </div>
                     <div className="logo">
-                        <img src="https://i.imgur.com/Rp89NPj.png" alt="YouTube" />
+                        <img src="https://i.imgur.com/Mwphh0y.png" alt="YouTube" />
                     </div>
                 </div>
 

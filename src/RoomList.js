@@ -21,13 +21,13 @@ const RoomList = () => {
                 // Xử lý để lấy video ID từ các định dạng URL khác nhau của YouTube
                 const processedRooms = roomsData.map(room => {
                     let videoId = null;
-                    // Sửa từ currentVideoUrl thành current_Video_Url
-                    if (room.current_Video_Url) {
+                    // Sửa thành current_video_url (chữ thường)
+                    if (room.current_video_url) {
                         // Xử lý các định dạng URL khác nhau
-                        if (room.current_Video_Url.includes('youtu.be/')) {
-                            videoId = room.current_Video_Url.split('youtu.be/')[1]?.split('?')[0];
-                        } else if (room.current_Video_Url.includes('youtube.com/watch')) {
-                            videoId = room.current_Video_Url.split('v=')[1]?.split('&')[0];
+                        if (room.current_video_url.includes('youtu.be/')) {
+                            videoId = room.current_video_url.split('youtu.be/')[1]?.split('?')[0];
+                        } else if (room.current_video_url.includes('youtube.com/watch')) {
+                            videoId = room.current_video_url.split('v=')[1]?.split('&')[0];
                         }
                         if (videoId) {
                             return {
@@ -52,8 +52,8 @@ const RoomList = () => {
 
     // Hàm xử lý điều hướng với video
     const handleRoomJoin = (room) => {
-        // Sửa từ currentVideoUrl thành current_Video_Url
-        if (room.current_Video_Url) {
+        // Sửa thành current_video_url (chữ thường)
+        if (room.current_video_url) {
             // Nếu có video, chuyển hướng với thông tin video
             navigate(`/room/${room.id}?videoId=${room.videoId}&autoplay=true`);
         } else {
@@ -76,13 +76,12 @@ const RoomList = () => {
                     <div className="room-thumbnail">
                         <img
                             src={room.videoThumbnail || room.thumbnail}
-                            // Sửa từ currentVideoTitle thành current_Video_Title
-                            alt={room.current_Video_Title || room.name}
+                            alt={room.current_video_title || room.name}
                             className="videoo-thumbnail"
                         />
                         <div className="videoo-overlay">
                             <h3 className="videoo-title">
-                                {room.current_Video_Title || 'Chưa có video đang phát'}
+                                {room.current_video_title || 'Chưa có video đang phát'}
                             </h3>
                             <div className="room-name">
                                 {room.name}

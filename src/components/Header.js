@@ -107,7 +107,7 @@ const Header = ({ usersInRoom, onSearchClick, onQueueClick, showCountdown, count
                             </svg>
                         </div>
                     ) : (
-                        <img src="https://i.imgur.com/Rp89NPj.png" alt="Cinemate" />
+                            <img src="https://i.imgur.com/Mwphh0y.png" alt="Cinemate" />
                     )}
                 </div>
 
