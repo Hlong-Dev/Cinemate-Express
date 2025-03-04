@@ -93,7 +93,7 @@ const RoomList = () => {
                                     {room.name}
                                 </div>
                                 <div className="glass-room-status">
-                                    {room.current_video_url ? 'Đang phát' : 'Phòng trống'}
+                                    {room.current_video_url ? 'Playing' : 'Empty Room'}
                                 </div>
                             </div>
                         </div>
