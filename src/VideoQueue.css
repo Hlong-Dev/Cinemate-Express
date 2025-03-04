@@ -4,12 +4,12 @@
     left: 0;
     bottom: 0;
     width: 400px; /* Chiều rộng cố định cho sidebar */
-    background: rgba(0, 0, 0, 0.95);
     
     z-index: 9999;
 }
 
 .video-queue-modal {
+    backdrop-filter: blur(90px);
     background: transparent;
     height: 100%;
     width: 100%;
@@ -40,6 +40,7 @@
 }
 
 .video-queue-content {
+    background: rgba(0, 0, 0, 0.5);
     flex: 1;
     overflow-y: auto;
     padding: 1rem;
@@ -86,6 +87,7 @@
     margin: 0;
     font-size: 0.9rem;
     color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .queue-duration {
