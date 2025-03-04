@@ -902,7 +902,7 @@ const ChatRoom = () => {
         // Initialize WebSocket only if not already initialized
         if (!stompClientRef.current) {
             const client = new Client({
-                brokerURL: 'ws://localhost:15674/ws',
+                brokerURL: 'wss://rabbitmq.colkidclub-hutech.id.vn/ws',
                 reconnectDelay: 5000,
                 heartbeatIncoming: 10000,
                 heartbeatOutgoing: 10000,
