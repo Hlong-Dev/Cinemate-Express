@@ -279,9 +279,16 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="content">
-                        <RoomList />
-                    </div>
+                        <div className="content">
+                            <div className="toggle-container">
+                                <span className="toggle-label">Hide mature content</span>
+                                <label className="toggle-switch">
+                                    <input type="checkbox" />
+                                    <span className="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <RoomList />
+                        </div>
                 </>
             )}
             {isSidebarOpen && <div className="sidebar-overlay"></div>}
