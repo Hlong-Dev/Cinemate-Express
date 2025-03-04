@@ -1,5 +1,5 @@
 ﻿import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './RoomList.css';
 
 const RoomList = () => {
@@ -17,7 +17,6 @@ const RoomList = () => {
                     throw new Error(`Server error: ${response.status}`);
                 }
                 const roomsData = await response.json();
-
                 // Xử lý để lấy video ID từ các định dạng URL khác nhau của YouTube
                 const processedRooms = roomsData.map(room => {
                     let videoId = null;
@@ -62,34 +61,45 @@ const RoomList = () => {
         }
     };
 
-    if (error) return <div className="error-message">{error}</div>;
+    if (error) return <div className="glass-error-message">{error}</div>;
 
     return (
-        <div className="room-list">
-            {rooms.map(room => (
-                <div
-                    key={room.id}
-                    className="room-card"
-                    onClick={() => handleRoomJoin(room)}
-                    style={{ cursor: 'pointer' }}
-                >
-                    <div className="room-thumbnail">
-                        <img
-                            src={room.videoThumbnail || room.thumbnail}
-                            alt={room.current_video_title || room.name}
-                            className="videoo-thumbnail"
-                        />
-                        <div className="videoo-overlay">
-                            <h3 className="videoo-title">
-                                {room.current_video_title || 'Chưa có video đang phát'}
-                            </h3>
-                            <div className="room-name">
-                                {room.name}
+        <div className="glass-room-container">
+            <div className="glass-room-list">
+                {rooms.map(room => (
+                    <div
+                        key={room.id}
+                        className="glass-room-card"
+                        onClick={() => handleRoomJoin(room)}
+                    >
+                        <div className="glass-room-content">
+                            <div className="glass-room-thumbnail">
+                                <img
+                                    src={room.videoThumbnail || room.thumbnail}
+                                    alt={room.current_video_title || room.name}
+                                    className="glass-thumbnail-img"
+                                />
+                                <div className="glass-play-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 5V19L19 12L8 5Z" fill="white" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div className="glass-room-details">
+                                <h3 className="glass-video-title">
+                                    {room.current_video_title || 'Chưa có video đang phát'}
+                                </h3>
+                                <div className="glass-room-name">
+                                    {room.name}
+                                </div>
+                                <div className="glass-room-status">
+                                    {room.current_video_url ? 'Đang phát' : 'Phòng trống'}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 };
