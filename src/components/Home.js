@@ -181,6 +181,18 @@ const Home = () => {
 
     return (
         <>
+            <div className="animated-background">
+                <div className="blur-circles">
+                    <div className="blur-circle"></div>
+                    <div className="blur-circle"></div>
+                    <div className="blur-circle"></div>
+                    <div className="blur-circle"></div>
+                    <div className="blur-circle"></div>
+                    <div className="blur-circle"></div>
+                    <div className="blur-circle"></div>
+                </div>
+                <div className="blur-overlay"></div>
+            </div>
             <header className="header">
                 <div className="top-bar">
                     <div className="menu-icon" onClick={toggleSidebar}>

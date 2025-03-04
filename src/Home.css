@@ -44,7 +44,7 @@
 .search-bar {
     display: flex;
     align-items: center;
-    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.3) !important;
     border-radius: 5px;
     padding: 10px 15px;
     width: 100%; /* Chiếm hết chiều rộng */
@@ -108,12 +108,13 @@
 
 /*code moi*/
 .sidebar {
+    backdrop-filter: blur(80px);
     position: fixed;
     left: -250px; /* Initially hide the sidebar */
     top: 0;
     width: 250px;
     height: 100%;
-    background-color: #1c1c1c;
+    background-color: rgba(0, 0, 0, 0);
     transition: left 0.3s ease; /* Slide in transition */
     padding-top: 20px;
     z-index: 1000;
@@ -275,12 +276,22 @@
 /* Add these styles to your existing Home.css */
 
 .sidebar {
+    backdrop-filter: blur(80px);
+    position: fixed;
+    left: -250px; /* Initially hide the sidebar */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    transition: left 0.3s ease; /* Slide in transition */
+    padding-top: 20px;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 0;
     left: -280px;
     width: 280px;
     height: 100vh;
-    background-color: #1a1a1a;
     transition: left 0.3s ease;
     z-index: 1000;
     color: white;
@@ -350,4 +361,395 @@
 /* Make sure these styles work with your existing styles */
 .header {
     z-index: 100; /* Higher than sidebar */
+}
+
+
+
+
+/* Thêm code này vào Home.css */
+
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Tăng z-index để hiển thị trên nhiều header */
+    overflow: hidden;
+}
+
+.blur-circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.blur-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.7;
+    transform-origin: center;
+    will-change: transform, opacity, left, top, scale;
+    mix-blend-mode: screen;
+}
+
+    .blur-circle:nth-child(1) {
+        width: 40vw;
+        height: 40vw;
+        background: linear-gradient(135deg, rgba(170, 60, 255, 0.7), rgba(120, 0, 240, 0.6));
+        left: 10%;
+        top: 20%;
+        animation: float-1 2.5s ease-in-out infinite, pulse 3.5s ease-in-out infinite; /* Tăng tốc độ */
+    }
+
+    .blur-circle:nth-child(2) {
+        width: 35vw;
+        height: 35vw;
+        background: linear-gradient(45deg, rgba(0, 150, 255, 0.7), rgba(0, 80, 200, 0.6));
+        left: 60%;
+        top: 15%;
+        animation: float-2 3s ease-in-out infinite, pulse 4.5s ease-in-out infinite alternate; /* Tăng tốc độ */
+    }
+
+    .blur-circle:nth-child(3) {
+        width: 30vw;
+        height: 30vw;
+        background: linear-gradient(225deg, rgba(255, 60, 100, 0.7), rgba(255, 0, 85, 0.6));
+        left: 30%;
+        top: 60%;
+        animation: float-3 2s ease-in-out infinite, pulse 3s ease-in-out infinite; /* Tăng tốc độ */
+    }
+
+    .blur-circle:nth-child(4) {
+        width: 25vw;
+        height: 25vw;
+        background: linear-gradient(315deg, rgba(200, 255, 0, 0.6), rgba(100, 210, 0, 0.5));
+        left: 70%;
+        top: 70%;
+        animation: float-4 1.8s ease-in-out infinite, pulse 4s ease-in-out infinite alternate; /* Tăng tốc độ */
+    }
+
+    .blur-circle:nth-child(5) {
+        width: 28vw;
+        height: 28vw;
+        background: linear-gradient(90deg, rgba(230, 230, 230, 0.6), rgba(255, 255, 255, 0.5));
+        left: 15%;
+        top: 70%;
+        animation: float-5 2.2s ease-in-out infinite, pulse 2.5s ease-in-out infinite; /* Tăng tốc độ */
+    }
+
+    .blur-circle:nth-child(6) {
+        width: 22vw;
+        height: 22vw;
+        background: linear-gradient(180deg, rgba(255, 200, 0, 0.7), rgba(255, 150, 0, 0.6));
+        left: 50%;
+        top: 40%;
+        animation: float-6 1.5s ease-in-out infinite, pulse 2s ease-in-out infinite alternate; /* Tăng tốc độ */
+    }
+
+    .blur-circle:nth-child(7) {
+        width: 20vw;
+        height: 20vw;
+        background: linear-gradient(270deg, rgba(0, 210, 255, 0.7), rgba(0, 180, 220, 0.6));
+        left: 75%;
+        top: 25%;
+        animation: float-7 1.2s ease-in-out infinite, pulse 3.5s ease-in-out infinite; /* Tăng tốc độ */
+    }
+
+/* Glass Morphism Effect */
+.blur-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(10, 5, 20, 0.4); /* Giảm độ đậm để tăng hiệu ứng glass */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Viền mỏng cho hiệu ứng glass */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Thêm shadow cho hiệu ứng glass */
+    animation: overlay-pulse 5s ease-in-out infinite; /* Tăng tốc độ */
+}
+
+@keyframes overlay-pulse {
+    0% {
+        background-color: rgba(10, 5, 20, 0.4);
+    }
+
+    25% {
+        background-color: rgba(20, 8, 30, 0.45);
+    }
+
+    50% {
+        background-color: rgba(10, 5, 20, 0.4);
+    }
+
+    75% {
+        background-color: rgba(5, 10, 25, 0.35);
+    }
+
+    100% {
+        background-color: rgba(10, 5, 20, 0.4);
+    }
+}
+
+@keyframes float-1 {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(10%, 7%) rotate(10deg);
+    }
+
+    25% {
+        transform: translate(5%, 15%) rotate(20deg);
+    }
+
+    40% {
+        transform: translate(-8%, 10%) rotate(10deg);
+    }
+
+    55% {
+        transform: translate(-15%, 0%) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(-10%, -10%) rotate(-10deg);
+    }
+
+    85% {
+        transform: translate(5%, -15%) rotate(-20deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+@keyframes float-2 {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    15% {
+        transform: translate(-12%, 7%) rotate(-15deg);
+    }
+
+    30% {
+        transform: translate(-7%, -10%) rotate(-25deg);
+    }
+
+    45% {
+        transform: translate(5%, -15%) rotate(-15deg);
+    }
+
+    60% {
+        transform: translate(12%, -5%) rotate(0deg);
+    }
+
+    75% {
+        transform: translate(7%, 10%) rotate(15deg);
+    }
+
+    90% {
+        transform: translate(-5%, 15%) rotate(25deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+@keyframes float-3 {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    12% {
+        transform: translate(15%, -10%) rotate(15deg);
+    }
+
+    25% {
+        transform: translate(5%, -20%) rotate(0deg);
+    }
+
+    37% {
+        transform: translate(-10%, -15%) rotate(-15deg);
+    }
+
+    50% {
+        transform: translate(-15%, 0%) rotate(-25deg);
+    }
+
+    62% {
+        transform: translate(-10%, 15%) rotate(-15deg);
+    }
+
+    75% {
+        transform: translate(5%, 20%) rotate(0deg);
+    }
+
+    87% {
+        transform: translate(15%, 10%) rotate(15deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+@keyframes float-4 {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    14% {
+        transform: translate(-10%, -15%) rotate(20deg);
+    }
+
+    28% {
+        transform: translate(-20%, 0%) rotate(35deg);
+    }
+
+    42% {
+        transform: translate(-10%, 15%) rotate(20deg);
+    }
+
+    57% {
+        transform: translate(10%, 15%) rotate(0deg);
+    }
+
+    71% {
+        transform: translate(20%, 0%) rotate(-20deg);
+    }
+
+    85% {
+        transform: translate(10%, -15%) rotate(-35deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+@keyframes float-5 {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    13% {
+        transform: translate(12%, -12%) rotate(-20deg);
+    }
+
+    25% {
+        transform: translate(15%, -5%) rotate(-10deg);
+    }
+
+    38% {
+        transform: translate(12%, 10%) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(0%, 15%) rotate(10deg);
+    }
+
+    63% {
+        transform: translate(-12%, 10%) rotate(20deg);
+    }
+
+    75% {
+        transform: translate(-15%, 0%) rotate(10deg);
+    }
+
+    88% {
+        transform: translate(-10%, -12%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+@keyframes float-6 {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    16% {
+        transform: translate(-8%, 12%) rotate(25deg);
+    }
+
+    33% {
+        transform: translate(12%, 8%) rotate(15deg);
+    }
+
+    50% {
+        transform: translate(18%, -10%) rotate(-10deg);
+    }
+
+    67% {
+        transform: translate(-2%, -18%) rotate(-25deg);
+    }
+
+    84% {
+        transform: translate(-15%, -5%) rotate(-10deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+@keyframes float-7 {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    20% {
+        transform: translate(8%, 15%) rotate(-25deg);
+    }
+
+    40% {
+        transform: translate(-15%, 8%) rotate(-15deg);
+    }
+
+    60% {
+        transform: translate(-10%, -12%) rotate(10deg);
+    }
+
+    80% {
+        transform: translate(12%, -8%) rotate(25deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+}
+
+.header {
+  
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
