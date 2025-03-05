@@ -2,13 +2,15 @@
 :root {
     /* Luxury glass color palette */
     --glass-bg: rgba(15, 15, 15, 0.35);
-    --glass-border: rgba(201, 168, 124, 0.2);
+   /* --glass-border: rgba(201, 168, 124, 0.2);*/
     --glass-shadow: rgba(0, 0, 0, 0.25);
-    --glass-highlight: rgba(201, 168, 124, 0.15);
+/*    --glass-highlight: rgba(201, 168, 124, 0.15);*/
     --luxury-accent: #b0b0b0; /* Silver/Gray accent */
     --luxury-accent-dark: #8a8a8a;
     --text-color: rgba(255, 255, 255, 0.95);
     --secondary-text: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(176, 176, 176, 0.2); /* Đổi từ rgba(201, 168, 124, 0.2) */
+    --glass-highlight: rgba(176, 176, 176, 0.15); /* Đổi từ rgba(201, 168, 124, 0.15) */
 }
 
 /* Main container with elegant dark background */
